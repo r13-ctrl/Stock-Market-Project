@@ -24,6 +24,9 @@ data['MA10'] = data['Close'].rolling(10).mean()
 data['MA50'] = data['Close'].rolling(50).mean()
 data['Target'] = data['Close']
 data = data.dropna()
+if data.empty:
+    st.error("No data found for this stock symbol. Please try another symbol like AAPL or RELIANCE.NS")
+    st.stop()
 
 # Features
 X = data[['Prev_Open','Prev_High','Prev_Low','Prev_Close','Prev_Volume','MA10','MA50']]
